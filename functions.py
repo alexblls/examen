@@ -49,13 +49,18 @@ def reduce(diccionario, atributo):
 
 def silhouette(lista1, lista2):
     sil = 0.0
+    ai=[]
+    bi=[]
     for i in lista1:
         for j in lista2:
-            ai= math.sqrt(math.pow(abs(i-j)))
-            # bi=
+            ai.append(math.sqrt(math.pow(abs(float(i)-float(j)),2)))
+            bi.append(math.sqrt(math.pow(abs((sum(lista1)/len(lista2))-j))))
+    sil = (bi-ai)/max(ai,bi)
     return sil
+
 
 diccionario = read_data("winequality.csv")
 dicW,dicR = split(diccionario)
 list1=reduce(dicW, "fixed acidity")
 list2=reduce(dicW, "alcohol")
+print(silhouette(list1,list2))
