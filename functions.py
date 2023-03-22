@@ -2,21 +2,24 @@ def read_data(fichero):
     f = open(fichero,mode="rt", encoding="utf-8")
     linea = f.readline()
     cont = 1
-    contador = 0
+    
     diccionariobase = {}
     diccionario = {}
 
     for i in linea.split(","):
+        i.replace('\n', '')
         diccionariobase[i] = ""
+    linea = f.readline()
 
-    while cont != 5:
+    while linea != "":
         diccionario["dato"+str(cont)] = diccionariobase.copy()
         
-
-        # for j in diccionariobase:
+        contador = 0
         for i in linea.split(","):
-            diccionario["dato"+str(cont)][contador] = i
-            contador+=1
+            # if i 
+            #     i.replace('/n', '')
+            diccionario["dato"+str(cont)][list(diccionariobase.keys())[contador]] = i
+            contador += 1
         cont += 1
         linea = f.readline()
 
