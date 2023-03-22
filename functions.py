@@ -7,7 +7,7 @@ def read_data(fichero):
     diccionario = {}
 
     for i in linea.split(","):
-        # i.replace('\n', '')
+        i = i.replace('\n', '')
         diccionariobase[i] = ""
     linea = f.readline()
 
@@ -16,7 +16,7 @@ def read_data(fichero):
         
         contador = 0
         for i in linea.split(","):
-            # i.replace('\n', '')
+            i = i.replace('\n', '')
             diccionario["dato"+str(cont)][list(diccionariobase.keys())[contador]] = i
             contador += 1
         cont += 1
@@ -27,13 +27,22 @@ def read_data(fichero):
 def split(diccionario):
     dic1 = {}
     dic2 = {}
-    if diccionario[""]["type"] == "white":
-        dic1 += diccionario[""]
-    else: 
+    for i in diccionario:
+
+        if diccionario[i]["type"] == "white":
+            del diccionario[i]["type"]
+            dic1[i]=diccionario[i]
+        else: 
+            del diccionario[i]["type"]
+            dic2[i]=diccionario[i]
 
     return dic1, dic2
 
+def reduce(diccionario, atributo):
+    lista = []
+    lista = diccionario[atributo]
+    return lista 
 
-
-
-print(read_data("winequality.csv"))
+diccionario = read_data("winequality.csv")
+print(split(diccionario))
+print
