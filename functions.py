@@ -1,3 +1,5 @@
+import math
+
 def read_data(fichero):
     f = open(fichero,mode="rt", encoding="utf-8")
     linea = f.readline()
@@ -40,9 +42,20 @@ def split(diccionario):
 
 def reduce(diccionario, atributo):
     lista = []
-    lista = diccionario[atributo]
+    for i in diccionario:
+
+        lista.append(diccionario[i][atributo])
     return lista 
 
+def silhouette(lista1, lista2):
+    sil = 0.0
+    for i in lista1:
+        for j in lista2:
+            ai= math.sqrt(math.pow(abs(i-j)))
+            # bi=
+    return sil
+
 diccionario = read_data("winequality.csv")
-print(split(diccionario))
-print
+dicW,dicR = split(diccionario)
+list1=reduce(dicW, "fixed acidity")
+list2=reduce(dicW, "alcohol")
